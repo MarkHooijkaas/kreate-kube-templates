@@ -1,0 +1,77 @@
+system:
+  template:
+    AntiAffinity:
+      class: kreate.kube.patch.Patch
+      template:  {{myrepo}}:AntiAffinity.yaml
+
+    ConfigMap:
+      class: kreate.kube.resource.ConfigMap
+      template:  {{myrepo}}:ConfigMap.yaml
+
+    CronJob:
+      class: kreate.kube.resource.Resource
+      template:  {{myrepo}}:CronJob.yaml
+
+    Deployment:
+      class: kreate.kube.resource.Deployment
+      template:  {{myrepo}}:Deployment.yaml
+
+    Egress:
+      class: kreate.kube.resource.Egress
+      template:  {{myrepo}}:Egress.yaml
+
+    EgressLabels:
+      class: kreate.kube.patch.EgressLabels
+      template:  {{myrepo}}:EgressLabels.yaml
+
+    HorizontalPodAutoscaler:
+      class: kreate.kube.resource.Resource
+      template:  {{myrepo}}:HorizontalPodAutoscaler.yaml
+
+    HttpProbes:
+      class: kreate.kube.patch.Patch
+      template:  {{myrepo}}:HttpProbes.yaml
+
+    Ingress:
+      class: kreate.kube.resource.Ingress
+      template:  {{myrepo}}:Ingress.yaml
+
+    KubernetesAnnotations:
+      class: kreate.kube.patch.Patch
+      template:  {{myrepo}}:KubernetesAnnotations.yaml
+
+    Kustomization:
+      class: kreate.kube._kust.Kustomization
+      template:  {{myrepo}}:Kustomization.yaml
+
+    PodDisruptionBudget:
+      class: kreate.kube.resource.Resource
+      template:  {{myrepo}}:PodDisruptionBudget.yaml
+
+    Secret:
+      class: kreate.kube.resource.Secret
+      template:  {{myrepo}}:Secret.yaml
+
+    SecretBasicAuth:
+      class: kreate.kube.resource.SecretBasicAuth
+      template:  {{myrepo}}:SecretBasicAuth.yaml
+
+    Service:
+      class: kreate.kube.resource.Resource
+      template:  {{myrepo}}:Service.yaml
+
+    ServiceAccount:
+      class: kreate.kube.resource.Resource
+      template:  {{myrepo}}:ServiceAccount.yaml
+
+    ServiceMonitor:
+      class: kreate.kube.resource.Resource
+      template:  {{myrepo}}:ServiceMonitor.yaml
+
+    SidecarContainer:
+      class: kreate.kube.patch.Patch
+      template:  {{myrepo}}:SidecarContainer.yaml
+
+    VolumeMounts:
+      class: kreate.kube.patch.Patch
+      template:  {{myrepo}}:VolumeMounts.yaml
