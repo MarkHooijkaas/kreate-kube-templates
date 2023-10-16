@@ -33,7 +33,7 @@ system:
       template:  {{myrepo}}:HttpProbes.yaml
 
     Ingress:
-      class: kreate.kube.resource.Ingress
+      class: kreate.kube.resource.Resource
       template:  {{myrepo}}:Ingress.yaml
 
     KubernetesAnnotations:
