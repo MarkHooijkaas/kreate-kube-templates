@@ -19,6 +19,10 @@ system:
       class: kreate.kube.resource.Deployment
       template:  {{my_repo_name}}:Deployment.yaml
 
+    StatefulSet:
+      class: kreate.kube.resource.Deployment
+      template:  {{my_repo_name}}:Deployment.yaml
+
     Egress:
       class: kreate.kube.resource.Egress
       template:  {{my_repo_name}}:Egress.yaml
