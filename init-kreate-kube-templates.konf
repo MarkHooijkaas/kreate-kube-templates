@@ -16,11 +16,11 @@ system:
       template:  {{my_repo_name}}:CronJob.yaml
 
     Deployment:
-      class: kreate.kube.resource.Deployment
+      class: kreate.kube.resource.Workload
       template:  {{my_repo_name}}:Deployment.yaml
 
     StatefulSet:
-      class: kreate.kube.resource.Deployment
+      class: kreate.kube.resource.Workload
       template:  {{my_repo_name}}:Deployment.yaml
 
     Egress:
