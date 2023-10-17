@@ -1,77 +1,80 @@
+inklude:
+- {{my_repo_name}}:kreate-kube-defaults.konf
+
 system:
   template:
     AntiAffinity:
       class: kreate.kube.patch.Patch
-      template:  {{myrepo}}:AntiAffinity.yaml
+      template:  {{my_repo_name}}:AntiAffinity.yaml
 
     ConfigMap:
       class: kreate.kube.resource.ConfigMap
-      template:  {{myrepo}}:ConfigMap.yaml
+      template:  {{my_repo_name}}:ConfigMap.yaml
 
     CronJob:
       class: kreate.kube.resource.Resource
-      template:  {{myrepo}}:CronJob.yaml
+      template:  {{my_repo_name}}:CronJob.yaml
 
     Deployment:
       class: kreate.kube.resource.Deployment
-      template:  {{myrepo}}:Deployment.yaml
+      template:  {{my_repo_name}}:Deployment.yaml
 
     Egress:
       class: kreate.kube.resource.Egress
-      template:  {{myrepo}}:Egress.yaml
+      template:  {{my_repo_name}}:Egress.yaml
 
     EgressLabels:
       class: kreate.kube.patch.EgressLabels
-      template:  {{myrepo}}:EgressLabels.yaml
+      template:  {{my_repo_name}}:EgressLabels.yaml
 
     HorizontalPodAutoscaler:
       class: kreate.kube.resource.Resource
-      template:  {{myrepo}}:HorizontalPodAutoscaler.yaml
+      template:  {{my_repo_name}}:HorizontalPodAutoscaler.yaml
 
     HttpProbes:
       class: kreate.kube.patch.Patch
-      template:  {{myrepo}}:HttpProbes.yaml
+      template:  {{my_repo_name}}:HttpProbes.yaml
 
     Ingress:
       class: kreate.kube.resource.Resource
-      template:  {{myrepo}}:Ingress.yaml
+      template:  {{my_repo_name}}:Ingress.yaml
 
     KubernetesAnnotations:
       class: kreate.kube.patch.Patch
-      template:  {{myrepo}}:KubernetesAnnotations.yaml
+      template:  {{my_repo_name}}:KubernetesAnnotations.yaml
 
     Kustomization:
       class: kreate.kube._kust.Kustomization
-      template:  {{myrepo}}:Kustomization.yaml
+      template:  {{my_repo_name}}:Kustomization.yaml
 
     PodDisruptionBudget:
       class: kreate.kube.resource.Resource
-      template:  {{myrepo}}:PodDisruptionBudget.yaml
+      template:  {{my_repo_name}}:PodDisruptionBudget.yaml
 
     Secret:
       class: kreate.kube.resource.Secret
-      template:  {{myrepo}}:Secret.yaml
+      template:  {{my_repo_name}}:Secret.yaml
 
     SecretBasicAuth:
       class: kreate.kube.resource.SecretBasicAuth
-      template:  {{myrepo}}:SecretBasicAuth.yaml
+      template:  {{my_repo_name}}:SecretBasicAuth.yaml
 
     Service:
       class: kreate.kube.resource.Resource
-      template:  {{myrepo}}:Service.yaml
+      template:  {{my_repo_name}}:Service.yaml
 
     ServiceAccount:
       class: kreate.kube.resource.Resource
-      template:  {{myrepo}}:ServiceAccount.yaml
+      template:  {{my_repo_name}}:ServiceAccount.yaml
 
     ServiceMonitor:
       class: kreate.kube.resource.Resource
-      template:  {{myrepo}}:ServiceMonitor.yaml
+      template:  {{my_repo_name}}:ServiceMonitor.yaml
 
     SidecarContainer:
       class: kreate.kube.patch.Patch
-      template:  {{myrepo}}:SidecarContainer.yaml
+      template:  {{my_repo_name}}:SidecarContainer.yaml
 
     VolumeMounts:
       class: kreate.kube.patch.Patch
-      template:  {{myrepo}}:VolumeMounts.yaml
+      template:  {{my_repo_name}}:VolumeMounts.yaml
