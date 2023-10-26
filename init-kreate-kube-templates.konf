@@ -48,7 +48,7 @@ system:
       template:  {{my_repo_name}}:KubernetesAnnotations.yaml
 
     Kustomization:
-      class: kreate.kube._kust.Kustomization
+      class: kreate.kube.Kustomization
       template:  {{my_repo_name}}:Kustomization.yaml
 
     PodDisruptionBudget:
