@@ -8,9 +8,9 @@ resources:
 - {{ res.get_filename() }}
 {% endfor %}
 
-patchesStrategicMerge:
+patches:
 {% for pat in my.patches() %}
-- {{ pat.get_filename() }}
+- path: {{ pat.get_filename() }}
 {% endfor %}
 
 configMapGenerator:
