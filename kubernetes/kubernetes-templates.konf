@@ -1,0 +1,60 @@
+inklude:
+- {{my_repo_name}}:kubernetes/kubernetes-defaults.konf
+
+system:
+  command:
+    build: kustomize build {app.target_path}
+    diff: kustomize build {app.target_path} | kubectl --context {app.env} -n {app.namespace} diff -f -
+    apply: kustomize build {app.target_path} | kubectl --context {app.env} -n {app.namespace} apply -f -
+  template:
+    ConfigMap:
+      class: kreate.kube.resource.ConfigMap
+      template:  {{my_repo_name}}:kubernetes/ConfigMap.yaml
+
+    CronJob:
+      class: kreate.kube.resource.Resource
+      template:  {{my_repo_name}}:kubernetes/CronJob.yaml
+
+    Deployment:
+      class: kreate.kube.resource.Workload
+      template:  {{my_repo_name}}:kubernetes/Deployment.yaml
+
+    StatefulSet:
+      class: kreate.kube.resource.Workload
+      template:  {{my_repo_name}}:kubernetes/Deployment.yaml
+
+    Egress:
+      class: kreate.kube.resource.Egress
+      template:  {{my_repo_name}}:kubernetes/Egress.yaml
+
+    HorizontalPodAutoscaler:
+      class: kreate.kube.resource.Resource
+      template:  {{my_repo_name}}:kubernetes/HorizontalPodAutoscaler.yaml
+
+    Ingress:
+      class: kreate.kube.resource.Resource
+      template:  {{my_repo_name}}:kubernetes/Ingress.yaml
+
+    PodDisruptionBudget:
+      class: kreate.kube.resource.Resource
+      template:  {{my_repo_name}}:kubernetes/PodDisruptionBudget.yaml
+
+    Secret:
+      class: kreate.kube.resource.Secret
+      template:  {{my_repo_name}}:kubernetes/Secret.yaml
+
+    SecretBasicAuth:
+      class: kreate.kube.resource.SecretBasicAuth
+      template:  {{my_repo_name}}:kubernetes/SecretBasicAuth.yaml
+
+    Service:
+      class: kreate.kube.resource.Resource
+      template:  {{my_repo_name}}:kubernetes/Service.yaml
+
+    ServiceAccount:
+      class: kreate.kube.resource.Resource
+      template:  {{my_repo_name}}:kubernetes/ServiceAccount.yaml
+
+    ServiceMonitor:
+      class: kreate.kube.resource.Resource
+      template:  {{my_repo_name}}:kubernetes/ServiceMonitor.yaml
