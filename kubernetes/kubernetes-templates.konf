@@ -21,7 +21,7 @@ system:
 
     StatefulSet:
       class: kreate.kube.resource.Workload
-      template:  {{my_repo_name}}:kubernetes/Deployment.yaml
+      template:  {{my_repo_name}}:kubernetes/StatefulSet.yaml
 
     Egress:
       class: kreate.kube.resource.Egress
