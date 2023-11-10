@@ -3,9 +3,10 @@ inklude:
 
 system:
   command:
-    build: kustomize build {app.target_path}
-    diff: kustomize build {app.target_path} | kubectl --context {app.env} -n {app.namespace} diff -f -
-    apply: kustomize build {app.target_path} | kubectl --context {app.env} -n {app.namespace} apply -f -
+    #output: {{ system.command.get('output','find {app.target_path} -type f -name *.yaml -printf ---n -exec cat {{}} \\;') }}
+    output: {{ system.command.get('output','cat {app.target_path}/resources/*.yaml') }}
+    diff:   {{ system.command.get('diff',  'kubectl --context {app.env} -n {app.namespace} diff  -f {app.target_path}/resources/') }} # Secrets should be added as well -f {app.target_path}/secrets/resources/'
+    apply:  {{ system.command.get('apply', 'kubectl --context {app.env} -n {app.namespace} apply -f {app.target_path}/resources/') }} # Secrets should be added as well -f {app.target_path}/secrets/resources/'
   template:
     ConfigMap:
       class: kreate.kube.resource.ConfigMap

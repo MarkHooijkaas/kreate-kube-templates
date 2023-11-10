@@ -4,9 +4,9 @@ inklude:
 
 system:
   command:
-    build: kustomize build {app.target_path}
-    diff: kustomize build {app.target_path} | kubectl --context {app.env} -n {app.namespace} diff -f -
-    apply: kustomize build {app.target_path} | kubectl --context {app.env} -n {app.namespace} apply -f -
+    build: {{ system.command.get('build','kustomize build {app.target_path}') }}
+    diff:  {{ system.command.get('diff','kustomize build  {app.target_path} | kubectl --context {app.env} -n {app.namespace} diff  -f -') }}
+    apply: {{ system.command.get('apply','kustomize build {app.target_path} | kubectl --context {app.env} -n {app.namespace} apply -f -') }}
   template:
     AntiAffinity:
       class: kreate.kube.patch.Patch
