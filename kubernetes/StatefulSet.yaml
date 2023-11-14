@@ -30,7 +30,7 @@ spec:
 
       containers:
       - name: {{ my.field.container_name }}
-        image: {{ my.field.image_repo }}/{{ my.field.image_name }}:{{ konfig.get_path("version.image_version") }}
+        image: {{ my.field.image_repo }}/{{ my.field.image_name }}:{{ my.field.image_version }}
         {{ my.optional("imagePullPolicy") }}
         env:
         {% for var in jinja_extension.sorted(strukt.get("env",{})) %}

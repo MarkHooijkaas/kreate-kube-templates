@@ -7,6 +7,7 @@ val:
     containerPort: 8080
     replicas: 1
     image_name: {{ app.appname }}.app
+    image_version: {{ version.image_version }}
     restartPolicy: "" # if not specfied explicetly defaults to Always
     imagePullPolicy: Always
     runAsUser: 1000
