@@ -4,12 +4,12 @@ kind: Kustomization
 namespace: {{ app.namespace }}
 
 resources:
-{% for res in my.resources() %}
+{% for res in my.resources() | sort(attribute='name') %}
 - {{ res.get_filename() }}
 {% endfor %}
 
 patches:
-{% for pat in my.patches() %}
+{% for pat in my.patches() | sort(attribute='name') %}
 - path: {{ pat.get_filename() }}
 {% endfor %}
 
