@@ -38,7 +38,7 @@ spec:
             env:
             {% for var in jinja_extension.sorted(strukt.get("env",{})) %}
             - name: {{ var }}
-              value: {{ strukt.get("env."+var,{})}}
+              value: {{ strukt.get("env."+var,{}) or konfig.var[var] }}
             {% endfor %}
             envFrom:
               - configMapRef:
