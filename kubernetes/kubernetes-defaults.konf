@@ -18,6 +18,7 @@ val:
     memory_request: "512M"
 
   CronJob:
+    schedule: "* * 31 2 *"   # February 31st, will never happen
     successfulJobsHistoryLimit: 3
     concurrencyPolicy: Allow
 
