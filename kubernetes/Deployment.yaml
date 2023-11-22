@@ -15,13 +15,16 @@ spec:
       name: {{ my.name }}
       labels:
         app: {{ my.name }}
-        {% for lbl in strukt.get("pod",{}).get("labels",{}).keys()  %}
+        # add extra labels from pod.labels
+        {% for lbl in strukt._get_path("pod.labels",{}).keys()  %}
         {{ lbl }}: {{ strukt.pod.labels[lbl] }}
         {% endfor %}
-      annotations:
-        {% for anno in strukt.get("pod",{}).get("annotations",{}).keys()  %}
-        {{ anno }}: {{ strukt.pod.annotations[anno] }}
-        {% endfor %}
+      # add all remaining pod.items, except for the labels
+      {% for item in strukt.get("pod",{}).keys()  %}
+      {% if item != "labels" %}
+      {{ item }}: {{ strukt.pod[item] | yaml(indent="        ") }}
+      {% endif %}
+      {% endfor %}
     spec:
       restartPolicy: {{ my.field.restartPolicy }}
       {{ my.optional("serviceAccount") }}
@@ -33,6 +36,10 @@ spec:
       - name: {{ my.field.container_name }}
         image: {{ my.field.image_repo }}/{{ my.field.image_name }}:{{ my.field.image_version }}
         {{ my.optional("imagePullPolicy") }}
+        # add all container.items
+        {% for item in strukt.get("container",{}).keys()  %}
+        {{ item }}: {{ strukt.container[item] | yaml(indent="          ") }}
+        {% endfor %}
         env:
         {% for var in jinja_extension.sorted(strukt.get("env",{})) %}
         - name: {{ var }}
