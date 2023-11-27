@@ -53,7 +53,7 @@ spec:
               runAsNonRoot: true
               runAsUser: {{ my.field.runAsUser }}
               runAsGroup: {{ my.field.runAsGroup }}
-            command: "/bin/sh"
+            command: "{{ my.field.command }}"
             # args:
             #   - '-c'
             #   - { strukt.command }
