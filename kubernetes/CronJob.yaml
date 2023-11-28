@@ -23,7 +23,7 @@ spec:
           {% endfor %}
           containers:
           - name: {{ my.field.container_name }}
-            image: {{ my.field.image_repo }}/{{ my.field.image_name }}:{{ my.field.image_version }}
+            image: {% if 'image_repo' in my.field %}{{ my.field.image_repo }}/{% endif %}{{ my.field.image_name }}:{{ my.field.image_version }}
             imagePullPolicy: {{ my.field.imagePullPolicy }}
             {% for item in strukt.get("container",{}).keys()  %}
             {{ item }}: {{ strukt.container[item] | yaml(indent=18) }}
