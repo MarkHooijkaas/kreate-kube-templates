@@ -36,6 +36,10 @@ val:
     component: webservice
     managed_by: kustomize
 
+  JobTemplateAnnotations:
+    component: cronjob
+    managed_by: kustomize
+
   SidecarContainer:
     containerPort: 8888  # different from 8080
     protocol: TCP
