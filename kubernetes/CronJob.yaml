@@ -22,37 +22,37 @@ spec:
           {{ item }}: {{ strukt.pod[item] | yaml(indent=12) }}
           {% endfor %}
           containers:
-            - name: {{ my.field.container_name }}
-              image: {{ my.field.image_repo }}/{{ my.field.image_name }}:{{ my.field.image_version }}
-              imagePullPolicy: {{ my.field.imagePullPolicy }}
+          - name: {{ my.field.container_name }}
+            image: {{ my.field.image_repo }}/{{ my.field.image_name }}:{{ my.field.image_version }}
+            imagePullPolicy: {{ my.field.imagePullPolicy }}
             {% for item in strukt.get("container",{}).keys()  %}
             {{ item }}: {{ strukt.container[item] | yaml(indent=18) }}
             {% endfor %}
-              resources:
-                limits:
-                  cpu: {{ my.field.cpu_limit }}
-                  memory: {{ my.field.memory_limit }}
-                requests:
-                  cpu: {{ my.field.cpu_request }}
-                  memory: {{ my.field.memory_request }}
-              env:
-              {% for var in jinja_extension.sorted(strukt.get("env",{})) %}
-              - name: {{ var }}
+            resources:
+              limits:
+                cpu: {{ my.field.cpu_limit }}
+                memory: {{ my.field.memory_limit }}
+              requests:
+                cpu: {{ my.field.cpu_request }}
+                memory: {{ my.field.memory_request }}
+            env:
+            {% for var in jinja_extension.sorted(strukt.get("env",{})) %}
+            - name: {{ var }}
               value: {{ strukt.get("env."+var,{}) or konfig.var[var] }}
-              {% endfor %}
-              envFrom:
-                - configMapRef:
-                {% for cm in strukt.get("vars",[]) %}
+            {% endfor %}
+            envFrom:
+              - configMapRef:
+              {% for cm in strukt.get("vars",[]) %}
                   name: {{ cm }}
-                {% endfor %}
-                - secretRef:
-                {% for secr in strukt.get("secret-vars",[]) %}
+              {% endfor %}
+              - secretRef:
+              {% for secr in strukt.get("secret-vars",[]) %}
                   name: {{ secr }}
-                {% endfor %}
-              securityContext:
-                runAsNonRoot: true
-                runAsUser: {{ my.field.runAsUser }}
-                runAsGroup: {{ my.field.runAsGroup }}
-              command: ["/bin/sh"]
-              args: ["-c", "{{ my.field.command }}"]
-      serviceAccountName: {{ strukt.get("serviceAccountName", "") }}
+              {% endfor %}
+            securityContext:
+              runAsNonRoot: true
+              runAsUser: {{ my.field.runAsUser }}
+              runAsGroup: {{ my.field.runAsGroup }}
+            command: ["/bin/sh"]
+            args: ["-c", "{{ my.field.command }}"]
+          serviceAccountName: {{ strukt.get("serviceAccountName", "")}}
