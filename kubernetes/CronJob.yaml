@@ -45,10 +45,12 @@ spec:
               {% for cm in strukt.get("vars",[]) %}
                   name: {{ cm }}
               {% endfor %}
+                {% if strukt.get("secret-vars", []) is defined and strukt.get("secret-vars", []) | length > 0 %}
               - secretRef:
               {% for secr in strukt.get("secret-vars",[]) %}
                   name: {{ secr }}
-              {% endfor %}
+                {% endfor %}
+              {% endif %}
             securityContext:
               runAsNonRoot: true
               runAsUser: {{ my.field.runAsUser }}
