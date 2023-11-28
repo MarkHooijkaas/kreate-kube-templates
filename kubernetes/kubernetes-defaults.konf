@@ -20,6 +20,7 @@ val:
   CronJob:
     schedule: "* * 31 2 *"   # February 31st, will never happen
     successfulJobsHistoryLimit: 3
+    backoffLimit: 6
     concurrencyPolicy: Allow
 
   Deployment:

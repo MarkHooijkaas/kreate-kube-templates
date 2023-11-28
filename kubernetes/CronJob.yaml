@@ -9,6 +9,7 @@ spec:
   concurrencyPolicy: {{ my.field.concurrencyPolicy}}
   jobTemplate:
     spec:
+      backoffLimit: {{my.field.backoffLimit}} # 6 By Default
       template:
         metadata:
           name: {{ my.name }}
