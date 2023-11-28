@@ -43,11 +43,11 @@ spec:
               envFrom:
                 - configMapRef:
                 {% for cm in strukt.get("vars",[]) %}
-                name: {{ cm }}
+                  name: {{ cm }}
                 {% endfor %}
                 - secretRef:
                 {% for secr in strukt.get("secret-vars",[]) %}
-                name: {{ secr }}
+                  name: {{ secr }}
                 {% endfor %}
               securityContext:
                 runAsNonRoot: true
