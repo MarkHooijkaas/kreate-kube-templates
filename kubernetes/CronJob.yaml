@@ -12,7 +12,7 @@ spec:
       backoffLimit: {{my.field.backoffLimit}} # 6 By Default
       template:
         metadata:
-          name: {{ my.name }}
+          name: {{app.appname}}
         {% for item in strukt.get("job",{}).keys()  %}
         {{ item }}: {{ strukt.job[item] | yaml(indent=12) }}
         {% endfor %}
