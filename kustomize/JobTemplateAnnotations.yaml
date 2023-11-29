@@ -10,7 +10,7 @@ spec:
       template:
         metadata:
           annotations:
-            app.kubernetes.io/name: {{ my.target.name }}
+            app.kubernetes.io/name: {{ app.appname }}
             app.kubernetes.io/version: "{{ my.field.image_version }}"
             app.kubernetes.io/component: {{ my.field.component }}
             app.kubernetes.io/part-of: {{ my.field.project }}
