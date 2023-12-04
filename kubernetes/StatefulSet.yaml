@@ -15,13 +15,13 @@ spec:
       labels:
         statefull-app: {{ my.name }}
         # add extra labels from pod.labels
-        {% for lbl in strukt._get_path("pod.labels",{}).keys()  %}
-        {{ lbl }}: {{ strukt.pod.labels[lbl] }}
+        {% for lbl in my.strukture._get_path("pod.labels",{}).keys()  %}
+        {{ lbl }}: {{ my.strukture.pod.labels[lbl] }}
         {% endfor %}
       # add all remaining pod.items, except for the labels
-      {% for item in strukt.get("pod",{}).keys()  %}
+      {% for item in my.strukture.get("pod",{}).keys()  %}
       {% if item != "labels" %}
-      {{ item }}: {{ strukt.pod[item] | yaml(indent="        ") }}
+      {{ item }}: {{ my.strukture.pod[item] | yaml(indent="        ") }}
       {% endif %}
       {% endfor %}
     spec:
@@ -36,24 +36,24 @@ spec:
         image: {{ my.field.image_repo }}/{{ my.field.image_name }}:{{ my.field.image_version }}
         {{ my.optional("imagePullPolicy") }}
         # add all container.items
-        {% for item in strukt.get("container",{}).keys()  %}
-        {{ item }}: {{ strukt.container[item] | yaml(indent="          ") }}
+        {% for item in my.strukture.get("container",{}).keys()  %}
+        {{ item }}: {{ my.strukture.container[item] | yaml(indent="          ") }}
         {% endfor %}
         env:
-        {% for var in jinja_extension.sorted(strukt.get("env",{})) %}
+        {% for var in jinja_extension.sorted(my.strukture.get("env",{})) %}
         - name: {{ var }}
-          value: {{ strukt.get("env."+var,{}) or konfig.var[var] }}
+          value: {{ my.strukture.get("env."+var,{}) or konfig.var[var] }}
         {% endfor %}
         envFrom:
-{% if strukt.get("secret-vars",[]) %}
+{% if my.strukture.get("secret-vars",[]) %}
         - secretRef:
-        {% for secr in strukt.get("secret-vars",[]) %}
+        {% for secr in my.strukture.get("secret-vars",[]) %}
             name: {{ secr }}
         {% endfor %}
 {% endif %}
-{% if strukt.get("vars",[]) %}
+{% if my.strukture.get("vars",[]) %}
         - configMapRef:
-        {% for cm in strukt.get("vars",[]) %}
+        {% for cm in my.strukture.get("vars",[]) %}
             name: {{ cm }}
         {% endfor %}
 {% endif %}
