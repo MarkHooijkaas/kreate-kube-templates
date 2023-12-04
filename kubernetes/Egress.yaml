@@ -10,7 +10,7 @@ spec:
   policyTypes:
     - Egress
   egress:
-    {% if strukt.get("cidr_list", "") == "allow-all" %}
+    {% if my.strukture.get("cidr_list", "") == "allow-all" %}
     - {}
     {% else %}
     {% for port in my.field.port_list.split(",") %}

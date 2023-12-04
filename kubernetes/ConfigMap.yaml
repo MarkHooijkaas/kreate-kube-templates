@@ -6,9 +6,9 @@ metadata:
     config-map: {{ my.name }}
   name: {{ my.name }}
 data:
-  {% for key in strukt.get("vars", []) %}
+  {% for key in my.strukture.get("vars", []) %}
     {{key}}: {{ my.var(key) }}
   {% endfor %}
-  {% for key in strukt.get("files", []) %}
-    {{key}}: {{ my.load_file(strukt.files[key])  | b64encode }}
+  {% for key in my.strukture.get("files", []) %}
+    {{key}}: {{ my.load_file(my.strukture.files[key])  | b64encode }}
   {% endfor %}

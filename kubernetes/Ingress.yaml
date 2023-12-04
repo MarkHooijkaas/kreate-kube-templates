@@ -6,7 +6,7 @@ metadata:
   {% if "nginx_snippets" in strukt %}
   annotations:
     nginx.ingress.kubernetes.io/configuration-snippet: |
-    {% for line in strukt.get("nginx_snippets", []) %}
+    {% for line in my.strukture.get("nginx_snippets", []) %}
       {{line}}
     {% endfor %}
   {% else %}
@@ -19,7 +19,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: {{ strukt.path or "/" }}
+            path: {{ my.strukture.path or "/" }}
             backend:
               service:
                 name: {{ my.field.service }}

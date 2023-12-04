@@ -9,7 +9,7 @@ spec:
   selector:
     app: {{ app.appname }}
   ports:
-{% for port in strukt.get("ports", [{"name": "http"}]) %}
+{% for port in my.strukture.get("ports", [{"name": "http"}]) %}
   - protocol: TCP
     port: {{ my.field.servicePort }}
     targetPort: {{ port.targetPort | default(my.field.containerPort) }}

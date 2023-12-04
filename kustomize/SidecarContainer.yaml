@@ -8,17 +8,17 @@ spec:
     spec:
       containers:
       - name: {{ my.shortname }}
-        image: {{ strukt.image }}
+        image: {{ my.strukture.image }}
         {{ my.optional("imagePullPolicy") }}
         securityContext:
           runAsUser: {{ my.field.runAsUser }}
         envFrom:
         - secretRef:
-        {% for secr in strukt.get("secret-vars",[]) %}
+        {% for secr in my.strukture.get("secret-vars",[]) %}
             name: {{ secr }}
         {% endfor %}
         - configMapRef:
-        {% for cm in strukt.get("vars",[]) %}
+        {% for cm in my.strukture.get("vars",[]) %}
             name: {{ cm }}
         {% endfor %}
         ports:
