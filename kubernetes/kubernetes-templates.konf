@@ -11,51 +11,65 @@ system:
     ConfigMap:
       class: kreate.kube.resource.ConfigMap
       template:  {{my_repo_name}}:kubernetes/ConfigMap.yaml
+      doc: optional:{{my_repo_name}}:doc/ConfigMap.md
 
     CronJob:
       class: kreate.kube.resource.Resource
       template:  {{my_repo_name}}:kubernetes/CronJob.yaml
+      doc: optional:{{my_repo_name}}:doc/CronJob.md
 
     Deployment:
       class: kreate.kube.resource.Workload
       template:  {{my_repo_name}}:kubernetes/Deployment.yaml
+      doc: optional:{{my_repo_name}}:doc/Deployment.md
 
     StatefulSet:
       class: kreate.kube.resource.Workload
       template:  {{my_repo_name}}:kubernetes/StatefulSet.yaml
+      doc: optional:{{my_repo_name}}:doc/StatefulSet.md
 
     Egress:
       class: kreate.kube.resource.Egress
       template:  {{my_repo_name}}:kubernetes/Egress.yaml
+      doc: optional:{{my_repo_name}}:doc/Egress.md
 
     HorizontalPodAutoscaler:
       class: kreate.kube.resource.Resource
       template:  {{my_repo_name}}:kubernetes/HorizontalPodAutoscaler.yaml
+      doc: optional:{{my_repo_name}}:doc/HorizontalPodAutoscaler.md
 
     Ingress:
       class: kreate.kube.resource.Resource
       template:  {{my_repo_name}}:kubernetes/Ingress.yaml
+      doc: optional:{{my_repo_name}}:doc/Ingress.md
 
     PodDisruptionBudget:
       class: kreate.kube.resource.Resource
       template:  {{my_repo_name}}:kubernetes/PodDisruptionBudget.yaml
+      doc: optional:{{my_repo_name}}:doc/PodDisruptionBudget.md
 
     Secret:
       class: kreate.kube.resource.Secret
       template:  {{my_repo_name}}:kubernetes/Secret.yaml
+      doc: optional:{{my_repo_name}}:doc/Secret.md
 
     SecretBasicAuth:
       class: kreate.kube.resource.SecretBasicAuth
       template:  {{my_repo_name}}:kubernetes/SecretBasicAuth.yaml
+      doc: optional:{{my_repo_name}}:doc/SecretBasicAuth.md
+      kind: Secret
 
     Service:
       class: kreate.kube.resource.Resource
       template:  {{my_repo_name}}:kubernetes/Service.yaml
+      doc: optional:{{my_repo_name}}:doc/Service.md
 
     ServiceAccount:
       class: kreate.kube.resource.Resource
       template:  {{my_repo_name}}:kubernetes/ServiceAccount.yaml
+      doc: optional:{{my_repo_name}}:doc/ServiceAccount.md
 
     ServiceMonitor:
       class: kreate.kube.resource.Resource
       template:  {{my_repo_name}}:kubernetes/ServiceMonitor.yaml
+      doc: optional:{{my_repo_name}}:doc/ServiceMonitor.md
