@@ -1,7 +1,6 @@
 ---
 apiVersion: apps/v1
-# The kind can be used for Deployment and StatefulSet
-kind: {{ my.kind }}
+kind: Deployment
 metadata:
   name: {{ my.name }}
 spec:
