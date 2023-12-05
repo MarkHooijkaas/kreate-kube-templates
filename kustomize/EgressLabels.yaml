@@ -1,8 +1,8 @@
 ---
 apiVersion: apps/v1
-kind: {{ target.kind }}
+kind: {{ my.target.kind }}
 metadata:
-  name: {{ target.name }}
+  name: {{ my.target.name }}
 spec:
   template:
     metadata:
