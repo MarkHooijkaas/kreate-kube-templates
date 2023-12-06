@@ -2,12 +2,31 @@
 This template klass is to kreate a kubernetes Deployment with one container.
 Other containers must be added through patches
 
-The default layout is
+
+A Deployment can have several sections:
+- `field:` contains values that will be retrieved using the `{{ my.field...}}` mechanism.
+  Usually these are provided by values, and not "hardcoded" in the strukt,
+  but for some values (e.g. image_name), this might make sense
+- `annotations:` add toplevel annotations
+- `labels:` add toplevel labels
+- `pod:` add any yaml on pod level
+- `pod.labels:` add labels to the metadata of a pod (not the Deployment). This is kept for backward compatibility but may change in future
+- `container:` add any yaml on container level
+- `files:` a convenient way to mount files in the container, from a ConfigMap (cm) or secret
+
+Note: The first 3 sections are inherited from the `Resource` komponent type, and available
+
+Note that the field section, at this moment is not required.
+Fields can currently be placed at the toplevel of a Komponent strukture as well.
+Before `kreate-kube` version 1.7.0 they could only be placed at the toplevel.
+This might change in the future (kreate-kube 2.0).
+
+An example is found below.
 ```
 strukt:
   Deployment:
     main:
-      field:
+      field:  # Note: The field is optional, but might be required in future
         containerPort: ...
         container_name: ...
         cpu_limit: ...
@@ -40,5 +59,4 @@ strukt:
           filename: path
           ...
       secret: # as cm but for Secrets
-
 ```
