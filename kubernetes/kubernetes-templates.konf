@@ -2,6 +2,9 @@ inklude:
 - {{my_repo_name}}:kubernetes/kubernetes-defaults.konf
 
 system:
+  requires:
+    kreate-kube:
+      - ">=1.6.1"
   command:
     #output: {{ system.command.get('output','find {app.target_path} -type f -name *.yaml -printf ---n -exec cat {{}} \\;') }}
     output: {{ system.command.get('output','cat {app.target_path}/resources/*.yaml') }}
