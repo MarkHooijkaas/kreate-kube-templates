@@ -3,8 +3,18 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ my.name }}
+{% if "feature" in my.strukture or "nginx_snippets" in my.strukture%}
+# This if is needed, to always have an annotations map (see the else)
+# Otherwise the python code will break :(   should be not needed in future
   annotations:
-    app.kubernetes.io/name: {{ app.appname }}
+    #app.kubernetes.io/name: {{ app.appname }}
+{% if "nginx_snippets" in my.strukture %}
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+{% for line in my.strukture.get("nginx_snippets", []) %}
+      {{line}}
+{% endfor %}
+{% endif %}
+
 {% for opt in my.strukture.get("feature",[]) %}
 {% if opt=="sticky" %}
     nginx.ingress.kubernetes.io/affinity: cookie
@@ -15,11 +25,8 @@ metadata:
 {% endif %}
 {% endfor %}
 
-{% if "nginx_snippets" in my.strukture %}
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-{% for line in my.strukture.get("nginx_snippets", []) %}
-      {{line}}
-{% endfor %}
+{% else %}
+  annotations: {}
 {% endif %}
 
 spec:
@@ -28,7 +35,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: {{ my.strukture.path or "/" }}
+            path: {{ my.strukture.get("path", "/") }}
             backend:
               service:
                 name: {{ my.field.service }}
