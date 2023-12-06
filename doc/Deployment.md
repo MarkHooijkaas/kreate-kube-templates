@@ -21,6 +21,10 @@ Fields can currently be placed at the toplevel of a Komponent strukture as well.
 Before `kreate-kube` version 1.7.0 they could only be placed at the toplevel.
 This might change in the future (kreate-kube 2.0).
 
+Listed below are all the fields supported by Deployment.
+A Patch will also look for fields in the target, so all the fields
+of HttpProbes patch (like readiness_path) can be set in a Deployment as well.
+
 An example is found below.
 ```
 strukt:
@@ -40,6 +44,7 @@ strukt:
         replicas: ...
         restartPolicy: ...
         revisionHistoryLimit: ...
+        probe_path: /actuator/health  # sets all probes to the same path
     annotations:  # to be added at top level
       name: value
       ...
