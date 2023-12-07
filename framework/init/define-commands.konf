@@ -9,6 +9,12 @@ system:
     diff:
       help: run kubectl diff
       script:  kubectl --context {konfig.app.env} -n {konfig.app.namespace} diff  -k {target_dir}
+    diff-file:
+      help: run kubectl diff for a specific file
+      script:  kubectl --context {konfig.app.env} -n {konfig.app.namespace} diff -f {file}
+    getyaml:
+        help: run kubectl get
+        script:  kubectl --context {konfig.app.env} -n {konfig.app.namespace} get {resource_type} {resource_name} -o yaml
     apply:
       help: run kubectl apply
       script: kubectl --context {konfig.app.env} -n {konfig.app.namespace} apply -k {target_dir}
